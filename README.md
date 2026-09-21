@@ -35,8 +35,8 @@ Install required packages:
 install.packages(c("deSolve", "ggplot2", "tidyr", "dplyr", "gridExtra"))
 ```
 
-Optional (for manuscript table/text generation):
-- Python 3.9+ with `python-docx`
+Optional (for regenerating `ST1_classification.json`):
+- Python 3.9+
 
 ## Repository Structure
 
@@ -74,7 +74,8 @@ New publication plots/                # Generated publication figures and tables
 ├── Fig1-Fig7 (main figures)
 ├── FigS1-FigS6 (supplementary figures)
 ├── Main_Tables.docx
-└── Supplementary_Tables.docx
+├── Supplementary_Tables.docx
+└── Supplementary_Figures_Identifiability.docx  # FigS4-S6 with extended captions
 ```
 
 ## Running the Code
