@@ -41,37 +41,36 @@ Optional (for manuscript table/text generation):
 ## Repository Structure
 
 ```
-Bevemipretide QSP/              # Model source code
-├── Integrated Model.R          # Full 28-ODE coupled system + validation
-├── Module 0 PK.R               # Pharmacokinetics (5 ODEs)
-├── Module 1 pass.R             # Cardiolipin dynamics (5 ODEs)
-├── Module 2 aSyn.R             # α-Synuclein pathology (3 ODEs)
-├── Module 3 ETC.R              # ETC bioenergetics (5 ODEs)
-├── Module 4 ROS.R              # Oxidative stress (3 ODEs)
-├── Module 5 Mitophagy.R        # Cell death & mitophagy (3 ODEs)
-├── Module 6 Neuroinflammation.R# Neuroinflammation (3 ODEs)
-├── Module 7 Motor.R            # Motor endpoint (1 ODE)
-├── Sensitivity Analysis.R      # OAT + Morris + Sobol (34 parameters)
-├── Human Translation.R         # Allometric mouse-to-human scaling
-├── Robustness Analysis.R       # Virtual population (N=250/arm)
-├── run_arm.R                   # Per-arm VPop simulation worker
-├── Uncertainty Analysis.R      # Bootstrap CIs + parameter envelope
-├── Phased Simulation.R         # Prodromal → diagnosis → treatment
-├── Identifiability Analysis.R  # Structural + practical identifiability
-├── profile_likelihood_fast.R   # Profile likelihood (Figure S5)
-├── Generate_New_Plots.R        # Publication figures (Fig 1-7, S1-S3)
-├── Novel Figures.R             # Phase portrait, death decomposition, radar
-├── Publication Figures.R       # Earlier figure generation script
-├── Fix_Fig3_Fig7.R             # Targeted Fig 3/7 regeneration
-├── Model Audit.R               # Bifurcation & solver stability diagnostics
-├── build_tables.py             # Generate Main/Supplementary Tables (DOCX)
-├── build_methods_results.py    # Generate Methods & Results (DOCX)
-├── build_manuscript_new.py     # Manuscript assembly
-├── build_narrative_review.py   # Narrative review section
-├── ST1_classification.json     # Parameter classification data
-└── Bevemipretide QSP.Rproj    # RStudio project file
+Bevemipretide QSP/                    # Model source code
+├── Integrated Model.R                # Full 28-ODE coupled system + calibration + validation
+│                                      # (the single source of truth: every analysis script below
+│                                      #  sources ONLY this file)
+├── Module 0 PK.R                     # Standalone module-level verification (not part of the
+├── Module 1 pass.R                   # analysis pipeline — each file re-implements and
+├── Module 2 aSyn.R                   # independently tests one module's ODEs in isolation,
+├── Module 3 ETC.R                    # with its own V1-V6 checks, as a development-time
+├── Module 4 ROS.R                    # cross-check against the integrated model's behaviour)
+├── Module 5 Mitophagy.R
+├── Module 6 Neuroinflammation.R
+├── Module 7 Motor.R
+├── Sensitivity Analysis.R            # OAT + Morris + Sobol (34 parameters) -> Table 3, Fig S1
+├── Human Translation.R               # Allometric mouse-to-human scaling -> Table 4, Fig 5
+├── run_arm.R                         # Per-arm virtual-population simulation (run 4x, one per dose)
+├── Robustness Analysis.R             # Assembles run_arm.R output -> Table 5, Fig 6
+├── Uncertainty Analysis.R            # Bootstrap CIs + parameter envelope -> Table S3, Fig 7
+├── Phased Simulation.R               # Prodromal -> diagnosis -> treatment -> Table S4
+├── Identifiability Analysis.R        # Structural identifiability + collinearity -> Fig S4, S6
+├── profile_likelihood_fast.R         # Practical identifiability (profile likelihood) -> Fig S5
+├── Generate_New_Plots.R              # Main figure generation (Fig 1, 2, 4, 5, 6, S1-S3, plus
+│                                      # first-pass Fig 3 and Fig 7)
+├── Fix_Fig3_Fig7.R                   # Corrects Fig 3 and Fig 7 — must be run AFTER
+│                                      # Generate_New_Plots.R to produce the final versions
+├── export_st1_classification.py      # Exports the parameter classification table to JSON
+│                                      # (consumed by Identifiability Analysis.R)
+├── ST1_classification.json           # Parameter classification data (output of the script above)
+└── Bevemipretide QSP.Rproj           # RStudio project file
 
-New publication plots/          # Generated publication figures
+New publication plots/                # Generated publication figures and tables
 ├── Fig1-Fig7 (main figures)
 ├── FigS1-FigS6 (supplementary figures)
 ├── Main_Tables.docx
@@ -80,12 +79,20 @@ New publication plots/          # Generated publication figures
 
 ## Running the Code
 
-All commands should be run from the `Bevemipretide QSP/` directory. Use `--vanilla` to ensure clean R sessions.
+All commands should be run from the `Bevemipretide QSP/` directory. Use `--vanilla` to ensure clean R sessions. Run order matters where noted.
 
-### 1. Individual Module Verification (each has 6 built-in tests)
+### 1. Integrated Model + Validation
 
 ```bash
 cd "Bevemipretide QSP"
+Rscript --vanilla "Integrated Model.R"
+```
+
+Runs the full 28-ODE system with 4-stage calibration and 18 independent validation checks against literature targets (Gao 2017, Choi 2022, Ivanova 2024, Bernheimer 1973). This is the only file every other script depends on.
+
+### 2. (Optional) Standalone Module Verification
+
+```bash
 Rscript --vanilla "Module 0 PK.R"
 Rscript --vanilla "Module 1 pass.R"
 Rscript --vanilla "Module 2 aSyn.R"
@@ -96,35 +103,40 @@ Rscript --vanilla "Module 6 Neuroinflammation.R"
 Rscript --vanilla "Module 7 Motor.R"
 ```
 
-Each module runs V1-V6 verification tests (48 tests total across all modules).
-
-### 2. Integrated Model + Validation
-
-```bash
-Rscript --vanilla "Integrated Model.R"
-```
-
-Runs the full 28-ODE system with 4-stage calibration verification and 18 independent validation checks against literature targets (Gao 2017, Choi 2022, Ivanova 2024, Bernheimer 1973).
+Each module independently re-implements and tests its own ODEs in isolation (V1-V6 checks, 48 tests total). These are development-time cross-checks, not inputs to any downstream analysis — safe to skip if you only want to reproduce the manuscript's reported figures and tables.
 
 ### 3. Analyses
 
 ```bash
-Rscript --vanilla "Sensitivity Analysis.R"      # ~20 min (OAT + Morris + Sobol)
-Rscript --vanilla "Human Translation.R"          # ~5 min
-Rscript --vanilla "Robustness Analysis.R"        # ~60 min (N=250/arm, 4 arms)
-Rscript --vanilla "Uncertainty Analysis.R"       # ~15 min
-Rscript --vanilla "Phased Simulation.R"          # ~10 min
-Rscript --vanilla "Identifiability Analysis.R"   # ~10 min
-Rscript --vanilla "profile_likelihood_fast.R"    # ~35 min
+Rscript --vanilla "Sensitivity Analysis.R"       # ~20 min (OAT + Morris + Sobol) -> Table 3, Fig S1
+Rscript --vanilla "Human Translation.R"          # ~5 min -> Table 4, Fig 5
+Rscript --vanilla run_arm.R 1                    # ~15 min each, run once per arm (1-4)
+Rscript --vanilla run_arm.R 2
+Rscript --vanilla run_arm.R 3
+Rscript --vanilla run_arm.R 4
+Rscript --vanilla "Robustness Analysis.R"        # assembles the 4 arms above -> Table 5, Fig 6
+Rscript --vanilla "Uncertainty Analysis.R"       # ~15 min -> Table S3, Fig 7
+Rscript --vanilla "Phased Simulation.R"          # ~10 min -> Table S4
+Rscript --vanilla "Identifiability Analysis.R"   # ~10 min -> Fig S4, S6 (reads ST1_classification.json)
+Rscript --vanilla "profile_likelihood_fast.R"    # ~35 min -> Fig S5
 ```
 
 ### 4. Generate Publication Figures
 
 ```bash
-Rscript --vanilla "Generate_New_Plots.R"         # Generates Fig 1-7, S1-S3
+Rscript --vanilla "Generate_New_Plots.R"         # Fig 1, 2, 4, 5, 6, S1-S3, plus first-pass Fig 3, 7
+Rscript --vanilla "Fix_Fig3_Fig7.R"              # corrects Fig 3 and Fig 7 — run this AFTER the line above
 ```
 
 Output appears in `../New publication plots/`.
+
+### 5. (If parameter classifications change) Regenerate ST1_classification.json
+
+```bash
+python export_st1_classification.py
+```
+
+Only needed if Table ST1's parameter classifications are edited; `ST1_classification.json` is already committed with its current output.
 
 ## Key Parameters
 

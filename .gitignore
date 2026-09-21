@@ -50,9 +50,19 @@ QSP_ABM/
 Bevemipretide QSP/check_mr.py
 Bevemipretide QSP/extract_mr_text.py
 Bevemipretide QSP/verify_mr.py
-Bevemipretide QSP/export_st1_classification.py
 Bevemipretide QSP/step2_figures_tables.py
 Bevemipretide QSP/step3_citations.py
+Bevemipretide QSP/build_manuscript_new.py
+Bevemipretide QSP/build_methods_results.py
+Bevemipretide QSP/build_narrative_review.py
+Bevemipretide QSP/build_tables.py
+
+# Diagnostic-only script (no file outputs, not part of the reproduction pipeline)
+Bevemipretide QSP/Model Audit.R
+
+# Superseded figure scripts (old numbering scheme, fully replaced by Generate_New_Plots.R)
+Bevemipretide QSP/Novel Figures.R
+Bevemipretide QSP/Publication Figures.R
 
 # HTML reports (regenerable)
 Bevemipretide QSP/*.html
