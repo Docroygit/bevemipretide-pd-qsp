@@ -1,0 +1,69 @@
+# R session files
+.RData
+.Rhistory
+.Rproj.user/
+
+# Cached intermediate data (large, regenerable by running scripts)
+*.rds
+Rplots.pdf
+
+# Reference literature PDFs (copyrighted, not distributable)
+*.pdf
+
+# Older/superseded figures in code directory (regenerable)
+Bevemipretide QSP/*.png
+
+# Manuscript drafts, writing artifacts, and backups (submitted separately via journal;
+# this repo is scoped to code/data reproducibility, not manuscript hosting)
+Bevemipretide QSP/*.docx
+New publication plots/*.BACKUP*
+New publication plots/Manuscript*.docx
+New publication plots/Abstract_bjp.docx
+New publication plots/Bullet_Point_Summary_bjp.docx
+New publication plots/Model_info_bjp.docx
+New publication plots/References_APA_bjp.docx
+New publication plots/Methods_and_Results*.docx
+New publication plots/Narrative_Review.docx
+New publication plots/Plots and figures.zip
+New publication plots/Model overview example.png
+
+# Graphical abstract images (publication asset, not a reproducibility artifact)
+New publication plots/Graphical Abstract Image*
+
+# ICH guideline documents
+ICH_M15*
+
+# Supplementary data files (submitted via journal)
+S1.xlsx
+S2.docx
+
+# Claude Code configuration (development tooling)
+.claude/
+CLAUDE.md
+humanised-scientific-writing.md
+remove-ai-marks.skill
+
+# QSP_ABM reference folder (unrelated)
+QSP_ABM/
+
+# Manuscript build helper scripts (not part of model code)
+Bevemipretide QSP/check_mr.py
+Bevemipretide QSP/extract_mr_text.py
+Bevemipretide QSP/verify_mr.py
+Bevemipretide QSP/export_st1_classification.py
+Bevemipretide QSP/step2_figures_tables.py
+Bevemipretide QSP/step3_citations.py
+
+# HTML reports (regenerable)
+Bevemipretide QSP/*.html
+
+# Log files
+*.log
+
+# ICH guideline documents (additional)
+ICH M15*.docx
+
+# Misc
+MDA Conference 2027.jpeg
+/build_methods_results.py
+Bevemipretide QSP/Methods_Results_Draft.md
