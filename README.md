@@ -37,7 +37,7 @@ pip install numpy scipy numba matplotlib pandas
 ## Repository Structure
 
 ```
-Corrected_analyses/
+Bevemipretide QSP model analyses/
 ├── code/
 │   ├── model.py              # 28-ODE model: PK (analytical) + 23 PD states (numerical)
 │   ├── fast_kernel.py         # Numba-compiled ODE kernel (algebraically identical to model.py)
@@ -52,7 +52,7 @@ Corrected_analyses/
 ## Running the Code
 
 ```bash
-cd Corrected_analyses/code
+cd "Bevemipretide QSP model analyses/code"
 
 # Run all analyses (~7 min on 22 cores)
 python -X utf8 bjp_corrected.py --workers 22 --patients 250 --candidates 1200 --boots 10000 --sobol-base 256
@@ -61,7 +61,7 @@ python -X utf8 bjp_corrected.py --workers 22 --patients 250 --candidates 1200 --
 python -X utf8 make_bjp_figures.py
 ```
 
-Results are written to `Corrected_analyses/results/` and figures to `Corrected_analyses/figures/`.
+Results are written to `Bevemipretide QSP model analyses/results/` and figures to `Bevemipretide QSP model analyses/figures/`.
 
 ### What the analysis produces
 
@@ -102,7 +102,7 @@ Results are written to `Corrected_analyses/results/` and figures to `Corrected_a
 
 ## Corrections Applied
 
-This code applies 7 corrections to the original R-based analyses (detailed in `Corrected_analyses/README.md`):
+This code applies 7 corrections to the original R-based analyses (detailed in `Bevemipretide QSP model analyses/README.md`):
 
 1. Drug exposure normalised by exact steady-state mean (not day-120 trough C_ref)
 2. k_drug re-anchored to preserve published mouse results (scenario A) with sensitivity check (scenario B)
