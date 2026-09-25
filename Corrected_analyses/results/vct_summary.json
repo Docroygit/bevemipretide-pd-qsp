@@ -1,0 +1,418 @@
+{
+  "flow": {
+    "candidates_screened": 271,
+    "eligible_enrolled": 250,
+    "included_analysed": 250,
+    "status_counts": {
+      "included": 250,
+      "no_onset_within_30y": 21
+    }
+  },
+  "bootstrap_resamples": 10000,
+  "diagnosis_DA_range": [
+    0.26962175048029874,
+    0.6916918847578255
+  ],
+  "diagnosis_DA_median": 0.6354928580192938,
+  "onset_years_median_IQR": [
+    3.6957037566318105,
+    1.0086369386703637,
+    8.146511830565936
+  ],
+  "placebo_DA_18mo_median_range": [
+    0.5498353136384242,
+    0.06460005059863352,
+    0.6794336670200395
+  ],
+  "placebo_cumulative_share": [
+    0.5742830427808858,
+    0.16900216091659345,
+    0.2567147963025209
+  ],
+  "arms": {
+    "A_10": {
+      "scenario": "A",
+      "dose_mg": 10,
+      "DA": {
+        "mean_difference": 0.013654752455107848,
+        "mean_benefit": 0.013654752455107848,
+        "d_unpaired": 0.07476162936142636,
+        "cliffs_delta": 0.059487999999999985,
+        "response_rate": 0.048,
+        "d_unpaired_95": [
+          0.06215725899430436,
+          0.08950593934910647
+        ],
+        "cliffs_delta_95": [
+          0.0544952000000001,
+          0.07286480000000004
+        ],
+        "response_rate_95": [
+          0.024,
+          0.076
+        ],
+        "mean_benefit_95": [
+          0.011794989771454092,
+          0.015670145032899766
+        ],
+        "n_per_arm_80pct_power": 2810,
+        "pooled_sd": 0.18264385851056755,
+        "median_benefit": 0.008864188392589845,
+        "benefit_quartile_share_top25": 0.631316008170254
+      },
+      "motor": {
+        "mean_difference": -0.018030404383852873,
+        "mean_benefit": 0.018030404383852873,
+        "d_unpaired": 0.08635903393764766,
+        "cliffs_delta": 0.08089600000000008,
+        "response_rate": 0.156,
+        "d_unpaired_95": [
+          0.071970375834853,
+          0.103167747325421
+        ],
+        "cliffs_delta_95": [
+          0.07299199999999995,
+          0.09785679999999994
+        ],
+        "response_rate_95": [
+          0.112,
+          0.2
+        ],
+        "mean_benefit_95": [
+          0.015526691335168857,
+          0.020675514713973876
+        ],
+        "n_per_arm_80pct_power": 2106,
+        "pooled_sd": 0.2087842297642081,
+        "median_benefit": 0.010693265320196751,
+        "benefit_quartile_share_top25": 0.6273622923890311
+      },
+      "rescue_fraction_cumulative_loss": {
+        "mitochondrial": 0.09178309223614356,
+        "inflammation": 0.12378865527258864,
+        "proteotoxic": 0.18936636306546084,
+        "total": 0.12224317104413651
+      }
+    },
+    "A_30": {
+      "scenario": "A",
+      "dose_mg": 30,
+      "DA": {
+        "mean_difference": 0.021229004126727805,
+        "mean_benefit": 0.021229004126727805,
+        "d_unpaired": 0.11673569682801106,
+        "cliffs_delta": 0.08985599999999994,
+        "response_rate": 0.096,
+        "d_unpaired_95": [
+          0.09911448993825597,
+          0.1367988576151733
+        ],
+        "cliffs_delta_95": [
+          0.0820479999999999,
+          0.10617600000000005
+        ],
+        "response_rate_95": [
+          0.06,
+          0.136
+        ],
+        "mean_benefit_95": [
+          0.01862562210004704,
+          0.02400506825790363
+        ],
+        "n_per_arm_80pct_power": 1153,
+        "pooled_sd": 0.18185529108551005,
+        "median_benefit": 0.014968255992927282,
+        "benefit_quartile_share_top25": 0.6033889910180478
+      },
+      "motor": {
+        "mean_difference": -0.028084945044062042,
+        "mean_benefit": 0.028084945044062042,
+        "d_unpaired": 0.13563939227137853,
+        "cliffs_delta": 0.12438400000000005,
+        "response_rate": 0.284,
+        "d_unpaired_95": [
+          0.1157934682612516,
+          0.1587570601076121
+        ],
+        "cliffs_delta_95": [
+          0.11295999999999995,
+          0.14473599999999998
+        ],
+        "response_rate_95": [
+          0.228,
+          0.34
+        ],
+        "mean_benefit_95": [
+          0.024648879140866276,
+          0.03168188685124972
+        ],
+        "n_per_arm_80pct_power": 855,
+        "pooled_sd": 0.20705596341711338,
+        "median_benefit": 0.016909988142282187,
+        "benefit_quartile_share_top25": 0.6058660484512512
+      },
+      "rescue_fraction_cumulative_loss": {
+        "mitochondrial": 0.13823034378873678,
+        "inflammation": 0.2037346076658818,
+        "proteotoxic": 0.29696836325158427,
+        "total": 0.1900511042650953
+      }
+    },
+    "A_60": {
+      "scenario": "A",
+      "dose_mg": 60,
+      "DA": {
+        "mean_difference": 0.026615760920854405,
+        "mean_benefit": 0.026615760920854405,
+        "d_unpaired": 0.14777701757702907,
+        "cliffs_delta": 0.10908800000000007,
+        "response_rate": 0.14,
+        "d_unpaired_95": [
+          0.12675833063084277,
+          0.1715018516556764
+        ],
+        "cliffs_delta_95": [
+          0.10076799999999997,
+          0.12617600000000007
+        ],
+        "response_rate_95": [
+          0.1,
+          0.184
+        ],
+        "mean_benefit_95": [
+          0.023504735734821643,
+          0.029883908435340296
+        ],
+        "n_per_arm_80pct_power": 720,
+        "pooled_sd": 0.18010757936010507,
+        "median_benefit": 0.019258863836506324,
+        "benefit_quartile_share_top25": 0.5914681804220222
+      },
+      "motor": {
+        "mean_difference": -0.035682875884680734,
+        "mean_benefit": 0.035682875884680734,
+        "d_unpaired": 0.1749144713187875,
+        "cliffs_delta": 0.1517759999999999,
+        "response_rate": 0.388,
+        "d_unpaired_95": [
+          0.1510879686527369,
+          0.20195845916761543
+        ],
+        "cliffs_delta_95": [
+          0.1391039999999999,
+          0.1726399999999999
+        ],
+        "response_rate_95": [
+          0.328,
+          0.448
+        ],
+        "mean_benefit_95": [
+          0.03144598535426388,
+          0.04016715873130897
+        ],
+        "n_per_arm_80pct_power": 515,
+        "pooled_sd": 0.2040018508225514,
+        "median_benefit": 0.02190340879585205,
+        "benefit_quartile_share_top25": 0.6015088165019166
+      },
+      "rescue_fraction_cumulative_loss": {
+        "mitochondrial": 0.17880666063952322,
+        "inflammation": 0.2620485643042266,
+        "proteotoxic": 0.35566022833995314,
+        "total": 0.23827564984525895
+      }
+    },
+    "B_10": {
+      "scenario": "B",
+      "dose_mg": 10,
+      "DA": {
+        "mean_difference": 0.008180632615827455,
+        "mean_benefit": 0.008180632615827455,
+        "d_unpaired": 0.04483790840329395,
+        "cliffs_delta": 0.035871999999999904,
+        "response_rate": 0.012,
+        "d_unpaired_95": [
+          0.03647134827421113,
+          0.05475941748963347
+        ],
+        "cliffs_delta_95": [
+          0.034239200000000046,
+          0.045856799999999885
+        ],
+        "response_rate_95": [
+          0.0,
+          0.028
+        ],
+        "mean_benefit_95": [
+          0.006873592337911248,
+          0.009637187065068433
+        ],
+        "n_per_arm_80pct_power": 7810,
+        "pooled_sd": 0.1824490237645982,
+        "median_benefit": 0.004777022295841482,
+        "benefit_quartile_share_top25": 0.6619146171134458
+      },
+      "motor": {
+        "mean_difference": -0.010765543699385054,
+        "mean_benefit": 0.010765543699385054,
+        "d_unpaired": 0.0515373904365026,
+        "cliffs_delta": 0.04838399999999998,
+        "response_rate": 0.076,
+        "d_unpaired_95": [
+          0.04223786355424189,
+          0.0627478397415408
+        ],
+        "cliffs_delta_95": [
+          0.04512000000000005,
+          0.0605119999999999
+        ],
+        "response_rate_95": [
+          0.044,
+          0.112
+        ],
+        "mean_benefit_95": [
+          0.00906984466746011,
+          0.01265041288499205
+        ],
+        "n_per_arm_80pct_power": 5912,
+        "pooled_sd": 0.20888802495052403,
+        "median_benefit": 0.005897249849425468,
+        "benefit_quartile_share_top25": 0.6580487867967278
+      },
+      "rescue_fraction_cumulative_loss": {
+        "mitochondrial": 0.0602253289291389,
+        "inflammation": 0.0682614016821157,
+        "proteotoxic": 0.10561839462052791,
+        "total": 0.07323651420218691
+      }
+    },
+    "B_30": {
+      "scenario": "B",
+      "dose_mg": 30,
+      "DA": {
+        "mean_difference": 0.014679364952104286,
+        "mean_benefit": 0.014679364952104286,
+        "d_unpaired": 0.0803544269251389,
+        "cliffs_delta": 0.06409599999999993,
+        "response_rate": 0.052,
+        "d_unpaired_95": [
+          0.06702310458555161,
+          0.09640318831050075
+        ],
+        "cliffs_delta_95": [
+          0.05884800000000001,
+          0.0784959999999999
+        ],
+        "response_rate_95": [
+          0.028,
+          0.08
+        ],
+        "mean_benefit_95": [
+          0.012671550606699503,
+          0.016832826077943064
+        ],
+        "n_per_arm_80pct_power": 2433,
+        "pooled_sd": 0.18268271598502114,
+        "median_benefit": 0.009540612682956029,
+        "benefit_quartile_share_top25": 0.626985106039901
+      },
+      "motor": {
+        "mean_difference": -0.019378051759510576,
+        "mean_benefit": 0.019378051759510576,
+        "d_unpaired": 0.09282648611452438,
+        "cliffs_delta": 0.08726400000000001,
+        "response_rate": 0.172,
+        "d_unpaired_95": [
+          0.0779131437383478,
+          0.11091148611188656
+        ],
+        "cliffs_delta_95": [
+          0.07875199999999993,
+          0.10489760000000008
+        ],
+        "response_rate_95": [
+          0.128,
+          0.22
+        ],
+        "mean_benefit_95": [
+          0.016807277953069147,
+          0.022220759859425305
+        ],
+        "n_per_arm_80pct_power": 1823,
+        "pooled_sd": 0.20875563183123153,
+        "median_benefit": 0.011593603168690542,
+        "benefit_quartile_share_top25": 0.6225247147737567
+      },
+      "rescue_fraction_cumulative_loss": {
+        "mitochondrial": 0.0971397083492962,
+        "inflammation": 0.13491908019495524,
+        "proteotoxic": 0.20578726562134353,
+        "total": 0.13141593936314377
+      }
+    },
+    "B_60": {
+      "scenario": "B",
+      "dose_mg": 60,
+      "DA": {
+        "mean_difference": 0.019413930531046404,
+        "mean_benefit": 0.019413930531046404,
+        "d_unpaired": 0.10651773230211742,
+        "cliffs_delta": 0.08307200000000003,
+        "response_rate": 0.072,
+        "d_unpaired_95": [
+          0.09028263145675682,
+          0.1257919859237061
+        ],
+        "cliffs_delta_95": [
+          0.075936,
+          0.09923199999999999
+        ],
+        "response_rate_95": [
+          0.04,
+          0.104
+        ],
+        "mean_benefit_95": [
+          0.017005703497130337,
+          0.02202755964793179
+        ],
+        "n_per_arm_80pct_power": 1385,
+        "pooled_sd": 0.18226008112886274,
+        "median_benefit": 0.013713774060116146,
+        "benefit_quartile_share_top25": 0.6027599439053364
+      },
+      "motor": {
+        "mean_difference": -0.025810454562100998,
+        "mean_benefit": 0.025810454562100998,
+        "d_unpaired": 0.124310043428102,
+        "cliffs_delta": 0.11484800000000006,
+        "response_rate": 0.268,
+        "d_unpaired_95": [
+          0.10587198782768373,
+          0.14566546604023378
+        ],
+        "cliffs_delta_95": [
+          0.10419200000000006,
+          0.13443360000000007
+        ],
+        "response_rate_95": [
+          0.216,
+          0.324
+        ],
+        "mean_benefit_95": [
+          0.022696957725456286,
+          0.02916754577866198
+        ],
+        "n_per_arm_80pct_power": 1017,
+        "pooled_sd": 0.2076296801957853,
+        "median_benefit": 0.015897349382347645,
+        "benefit_quartile_share_top25": 0.6034090374113718
+      },
+      "rescue_fraction_cumulative_loss": {
+        "mitochondrial": 0.12518604530014588,
+        "inflammation": 0.18561300550514293,
+        "proteotoxic": 0.27478185850553705,
+        "total": 0.1738017908671432
+      }
+    }
+  }
+}

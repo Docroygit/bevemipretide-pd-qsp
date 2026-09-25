@@ -1,0 +1,46 @@
+{
+  "mouse": {
+    "k_a": 1.5,
+    "ke_plasma": 0.231,
+    "k_12": 0.3,
+    "k_21": 0.2,
+    "k_brain_in": 0.04,
+    "k_brain_out": 0.016,
+    "k_mito_in": 0.5,
+    "k_mito_out": 0.02,
+    "central_elimination_half_time_h": 3.000637145281148,
+    "slowest_mode_half_life_days": 56.49373167416525,
+    "mean_SS_mito_amount_per_unit_daily_dose": 11.273448773448832,
+    "SS_trough_mito_amount": 11.250954708097552,
+    "BJP_C_ref": 4.43,
+    "day120_fraction_of_SS_trough": 0.7701729040238965,
+    "days_to_fraction_of_SS": {
+      "0.5": 57,
+      "0.9": 188,
+      "0.95": 245
+    }
+  },
+  "human": {
+    "k_a": 0.4,
+    "ke_plasma": 0.032,
+    "k_12": 0.041,
+    "k_21": 0.027,
+    "k_brain_in": 0.015,
+    "k_brain_out": 0.01,
+    "k_mito_in": 0.5,
+    "k_mito_out": 0.02,
+    "central_elimination_half_time_h": 21.66084939249829,
+    "slowest_mode_half_life_days": 112.40977321664046,
+    "mean_SS_mito_amount_per_unit_daily_dose": 48.828124999999744,
+    "SS_trough_mito_amount": 48.819409437276214,
+    "BJP_C_ref": 2.15,
+    "day120_fraction_of_SS_trough": 0.5170442042067007,
+    "days_to_fraction_of_SS": {
+      "0.5": 115,
+      "0.9": 376,
+      "0.95": 488
+    }
+  },
+  "allometric_k_brain_out_from_mouse": 0.002199532962816904,
+  "HED_mg_70kg_FDA_Km": 28.37837837837838
+}

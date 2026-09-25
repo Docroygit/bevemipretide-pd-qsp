@@ -1,0 +1,91 @@
+﻿parameter,value,units,description,source,confidence,original_name,original_value,original_units,module,original_classification
+CI_max,0.74,—,Max CI repair target (PINK1/Parkin impairment),Calibration (Section 2.2),Unverified source classification: Calibrated,CI_max,0.74,—,Disease,Calibrated
+alpha_clear,0.25,—,aSyn clearance capacity (GBA/aging),Calibration (Section 2.2),Unverified source classification: Calibrated,α_clear,0.25,—,Disease,Calibrated
+k_a,1.5,h⁻¹,SC absorption rate,[75],Unverified source classification: Estimated,k_a,1.5,h⁻¹,M0,Estimated
+ke_plasma,0.231,h⁻¹,Plasma elimination (t½ = 3.0 h),[76],Unverified source classification: Literature-derived,"k_e,plasma",0.231,h⁻¹,M0,Literature-derived
+k_mito_in,0.5,h⁻¹,Mitochondrial uptake,[43],Unverified source classification: Assumed,k_mito_in,0.50,h⁻¹,M0,Assumed
+C_ref,4.43,—,Reference mitochondrial concentration,5 mg/kg SS,Unverified source classification: Estimated,C_ref,4.43,—,M0,Estimated
+k_12,0.3,h⁻¹,Central→peripheral distribution,Standard two-compartment PK assumption,Unverified source classification: Assumed,k_12,0.30,h⁻¹,M0,Assumed
+k_21,0.2,h⁻¹,Peripheral→central redistribution,Moderate tissue binding assumption,Unverified source classification: Assumed,k_21,0.20,h⁻¹,M0,Assumed
+k_brain_in,0.04,h⁻¹,BBB penetration (plasma→brain),[76],Unverified source classification: Estimated,k_brain_in,0.040,h⁻¹,M0,Estimated
+k_brain_out,0.016,h⁻¹,Brain efflux,[76],Unverified source classification: Literature-derived,k_brain_out,0.016,h⁻¹,M0,Literature-derived
+k_mito_out,0.02,h⁻¹,Mitochondrial efflux,Slow CL dissociation; consistent with poster trough kinetics,Unverified source classification: Assumed,k_mito_out,0.020,h⁻¹,M0,Assumed
+Dose_norm,,—,Normalised dose input,—,Unverified source classification: Assumed,Dose_norm,dose/5.0,—,M0,Assumed
+k_ox,0.02,h⁻¹,ROS-driven CL oxidation,[14],Unverified source classification: Literature-derived,k_ox,0.020,h⁻¹,M1,Literature-derived
+k_drug,0.1,h⁻¹,Drug-mediated CL_ox reduction,[77],Unverified source classification: Estimated,k_drug,0.100,h⁻¹,M1,Estimated
+k_red,0.07,h⁻¹,Tafazzin-mediated CL remodelling,[14],Unverified source classification: Literature-derived,k_red,0.070,h⁻¹,M1,Literature-derived
+k_syn_CL,0.007,h⁻¹,CL synthesis rate,[14],Unverified source classification: Literature-derived,k_syn_CL,0.007,h⁻¹,M1,Literature-derived
+K_CL,1.0,—,CL synthesis saturation,Michaelis-Menten form,Unverified source classification: Assumed,K_CL,1.0,—,M1,Assumed
+k_ALCAT,5.0,dimensionless,ALCAT1-mediated oxidation,[65],Unverified source classification: Estimated,k_ALCAT,5.0,h⁻¹,M1,Estimated
+k_aSyn_ox,0.02,h⁻¹,aSyn-driven CL oxidation,[22],Unverified source classification: Literature-derived,k_aSyn_ox,0.020,h⁻¹,M1,Literature-derived
+k_degrad_ox,0.01,h⁻¹,Oxidised CL degradation,First-order clearance,Unverified source classification: Assumed,k_degrad_ox,0.010,h⁻¹,M1,Assumed
+k_ext,0.001,h⁻¹,CL externalisation,[66],Unverified source classification: Literature-derived,k_ext,0.001,h⁻¹,M1,Literature-derived
+k_clear_ext_CL,0.05,h⁻¹,Externalised CL clearance,Mitophagy signal,Unverified source classification: Assumed,k_clear_ext_CL,0.050,h⁻¹,M1,Assumed
+k_act_A,0.5,h⁻¹,ALCAT1 activation,[65],Unverified source classification: Estimated,k_act_A,0.50,h⁻¹,M1,Estimated
+k_deact_A,0.45,h⁻¹,ALCAT1 deactivation,[65],Unverified source classification: Estimated,k_deact_A,0.45,h⁻¹,M1,Estimated
+k_act_T,0.5,h⁻¹,Tafazzin activation,[14],Unverified source classification: Estimated,k_act_T,0.50,h⁻¹,M1,Estimated
+k_deact_T,0.556,h⁻¹,Tafazzin deactivation,[14],Unverified source classification: Estimated,k_deact_T,0.556,h⁻¹,M1,Estimated
+k_agg,0.009,h⁻¹,Basal aSyn aggregation rate,[44],Unverified source classification: Literature-derived,k_agg,0.009,h⁻¹,M2,Literature-derived
+k_clear,0.241,h⁻¹,Oligomer clearance (autophagy/UPS),[45],Unverified source classification: Literature-derived,k_clear,0.241,h⁻¹,M2,Literature-derived
+k_ROS_agg,2.0,—,ROS-enhanced aggregation sensitivity,[74],Unverified source classification: Estimated,k_ROS_agg,2.0,—,M2,Estimated
+k_syn_aSyn,0.5,h⁻¹,aSyn monomer synthesis,Bhatt 2009†,Unverified source classification: Literature-derived,k_syn_aSyn,0.50,h⁻¹,M2,Literature-derived
+k_turn,0.014,h⁻¹,Monomer turnover,Bhatt 2009†,Unverified source classification: Literature-derived,k_turn,0.014,h⁻¹,M2,Literature-derived
+k_CL_loss,5.0,—,CL-loss seeding sensitivity,[38],Unverified source classification: Estimated,k_CL_loss,5.0,—,M2,Estimated
+k_seed_CL,1.0,—,CL_ext seeding coefficient,[66],Unverified source classification: Estimated,k_seed_CL,1.0,—,M2,Estimated
+k_refold,0.01,h⁻¹,Oligomer refolding,Slow relative to clearance,Unverified source classification: Assumed,k_refold,0.010,h⁻¹,M2,Assumed
+k_secrete,0.005,h⁻¹,aSyn secretion,[67],Unverified source classification: Literature-derived,k_secrete,0.005,h⁻¹,M2,Literature-derived
+k_clear_ext_aSyn,0.1,h⁻¹,Extracellular aSyn clearance,[67],Unverified source classification: Literature-derived,k_clear_ext_aSyn,0.10,h⁻¹,M2,Literature-derived
+k_impair,0.35,—,MG-driven clearance impairment,Calibration (Section 2.2),Unverified source classification: Calibrated,k_impair,0.35,—,M2→M6,Calibrated
+k_CI_repair,0.05,h⁻¹,Complex I repair rate,[46],Unverified source classification: Literature-derived,k_CI_repair,0.050,h⁻¹,M3,Literature-derived
+K_mPTP,0.4,—,mPTP opening threshold (Hill K),—,Unverified source classification: Estimated,K_mPTP,0.40,—,M3,Estimated
+k_ATP_syn,1.2,h⁻¹,ATP synthesis rate,[47],Unverified source classification: Literature-derived,k_ATP_syn,1.20,h⁻¹,M3,Literature-derived
+k_CI_ROS,0.02,h⁻¹,ROS-mediated CI damage,[68],Unverified source classification: Literature-derived,k_CI_ROS,0.020,h⁻¹,M3,Literature-derived
+k_CI_aSyn,0.2,h⁻¹,aSyn-mediated CI inhibition,[37],Unverified source classification: Literature-derived,k_CI_aSyn,0.200,h⁻¹,M3,Literature-derived
+k_SC_form,0.1,h⁻¹,Supercomplex formation,[69],Unverified source classification: Literature-derived,k_SC_form,0.10,h⁻¹,M3,Literature-derived
+k_SC_dissoc,0.05,h⁻¹,Supercomplex dissociation,CL-dependent,Unverified source classification: Estimated,k_SC_dissoc,0.05,h⁻¹,M3,Estimated
+k_resp,1.0,h⁻¹,ETC respiration rate,Normalised,Unverified source classification: Assumed,k_resp,1.0,h⁻¹,M3,Assumed
+k_ATPase,0.02,h⁻¹,F1Fo ATPase activity,[47],Unverified source classification: Literature-derived,k_ATPase,0.020,h⁻¹,M3,Literature-derived
+k_leak,0.01,h⁻¹,Proton leak rate,[47],Unverified source classification: Literature-derived,k_leak,0.010,h⁻¹,M3,Literature-derived
+k_mPTP_depol,0.5,h⁻¹,Depolarisation-driven mPTP,[25],Unverified source classification: Estimated,k_mPTP_depol,0.50,h⁻¹,M3,Estimated
+k_ATP_consume,0.025,h⁻¹,ATP consumption rate,Basal demand,Unverified source classification: Assumed,k_ATP_consume,0.025,h⁻¹,M3,Assumed
+k_ATP_mPTP,2.0,h^-1,mPTP-induced ATP depletion,[25],Unverified source classification: Estimated,k_ATP_mPTP,2.0,—,M3,Estimated
+k_mPTP_open,0.5,h⁻¹,mPTP opening rate,[25],Unverified source classification: Estimated,k_mPTP_open,0.50,h⁻¹,M3,Estimated
+k_mPTP_close,0.5,h⁻¹,mPTP closing rate,[25],Unverified source classification: Estimated,k_mPTP_close,0.50,h⁻¹,M3,Estimated
+n_Hill,3.0,—,mPTP Hill coefficient,Cooperative gating,Unverified source classification: Assumed,n_Hill,3,—,M3,Assumed
+k_ROS_basal,0.122,h⁻¹,Basal mitochondrial ROS production,—,Unverified source classification: Estimated,k_ROS_basal,0.122,h⁻¹,M4,Estimated
+k_SOD2,1.0,h⁻¹,SOD2 dismutation rate,[48],Unverified source classification: Literature-derived,k_SOD2,1.0,h⁻¹,M4,Literature-derived
+k_shunt,0.125,h⁻¹,CI/SC-dependent electron leak,—,Unverified source classification: Estimated,k_shunt,0.125,h⁻¹,M4,Estimated
+k_GPx4,0.5,h⁻¹,GPx4 reduction,[70],Unverified source classification: Literature-derived,k_GPx4,0.5,h⁻¹,M4,Literature-derived
+k_ROS_other,0.05,h⁻¹,Non-enzymatic ROS clearance,Background,Unverified source classification: Assumed,k_ROS_other,0.05,h⁻¹,M4,Assumed
+k_SOD2_on,0.5,h⁻¹,SOD2 activation,[48],Unverified source classification: Estimated,k_SOD2_on,0.50,h⁻¹,M4,Estimated
+k_SOD2_off,1.0,h⁻¹,SOD2 deactivation,[48],Unverified source classification: Estimated,k_SOD2_off,1.0,h⁻¹,M4,Estimated
+k_GPx4_on,0.3,h⁻¹,GPx4 activation,[70],Unverified source classification: Estimated,k_GPx4_on,0.30,h⁻¹,M4,Estimated
+k_GPx4_off,1.5,h⁻¹,GPx4 deactivation,[70],Unverified source classification: Estimated,k_GPx4_off,1.5,h⁻¹,M4,Estimated
+k_death,0.0007,h⁻¹,Mitochondrial death rate,—,Unverified source classification: Estimated,k_death,7×10⁻⁴,h⁻¹,M5,Estimated
+k_death_inflam,0.0002,h⁻¹,Neuroinflammation-mediated death,[41],Unverified source classification: Literature-derived,k_death_inflam,2×10⁻⁴,h⁻¹,M5,Literature-derived
+k_death_aSyn,0.00015,h⁻¹,Direct aSyn proteotoxicity,[18],Unverified source classification: Literature-derived,k_death_aSyn,1.5×10⁻⁴,h⁻¹,M5,Literature-derived
+K_death,0.25,—,Death threshold (Hill K for mito_damage),Calibration (Section 2.2),Unverified source classification: Calibrated,K_death,0.25,—,M5,Calibrated
+n_death,4.0,—,Hill cooperativity for death,Calibration (Section 2.2),Unverified source classification: Calibrated,n_death,4,—,M5,Calibrated
+k_PINK1_on,2.0,h⁻¹,PINK1 activation,[26],Unverified source classification: Literature-derived,k_PINK1_on,2.0,h⁻¹,M5,Literature-derived
+k_PINK1_CL,20.0,h^-1,CL_ext-driven PINK1 activation,[16],Unverified source classification: Literature-derived,k_PINK1_CL,20.0,—,M5,Literature-derived
+k_PINK1_off,0.5,h⁻¹,PINK1 deactivation,[26],Unverified source classification: Estimated,k_PINK1_off,0.50,h⁻¹,M5,Estimated
+k_damage_mPTP,4.0,h^-1,mPTP damage sensitivity,Calibration (Section 2.2),Unverified source classification: Calibrated,k_damage_mPTP,4.0,—,M5,Calibrated
+k_damage_energy,1.0,h^-1,Energy depletion damage,Normalised,Unverified source classification: Assumed,k_damage_energy,1.0,—,M5,Assumed
+k_damage_dpsi,2.0,h^-1,Depolarisation damage,[25],Unverified source classification: Estimated,k_damage_dpsi,2.0,—,M5,Estimated
+k_repair,1.0,h⁻¹,Mitochondrial repair rate,PINK1/Parkin pathway,Unverified source classification: Assumed,k_repair,1.0,h⁻¹,M5,Assumed
+k_biogen,3.0,h⁻¹,Mitochondrial biogenesis,PGC-1α pathway,Unverified source classification: Estimated,k_biogen,3.0,h⁻¹,M5,Estimated
+K_inflam_death,0.45,—,Inflammation death threshold,Hill gating,Unverified source classification: Estimated,K_inflam_death,0.45,—,M5,Estimated
+n_inflam_death,4.0,—,Inflammation death cooperativity,Threshold behaviour,Unverified source classification: Assumed,n_inflam_death,4,—,M5,Assumed
+K_aSyn_death,0.2,—,aSyn death threshold,Hill gating,Unverified source classification: Estimated,K_aSyn_death,0.20,—,M5,Estimated
+n_aSyn_death,4.0,—,aSyn death cooperativity,Threshold behaviour,Unverified source classification: Assumed,n_aSyn_death,4,—,M5,Assumed
+k_act_MG,20.0,h⁻¹,Microglial TLR2-mediated activation,[30],Unverified source classification: Literature-derived,k_act_MG,20.0,h⁻¹,M6,Literature-derived
+k_auto,0.5,h⁻¹,Microglial autocrine activation,[71],Unverified source classification: Estimated,k_auto,0.50,h⁻¹,M6,Estimated
+k_deact_MG,1.0,h⁻¹,Microglial deactivation,[71],Unverified source classification: Estimated,k_deact_MG,1.0,h⁻¹,M6,Estimated
+k_TNF_rel,0.2,h⁻¹,TNF release rate,[72],Unverified source classification: Literature-derived,k_TNF_rel,0.20,h⁻¹,M6,Literature-derived
+k_TNF_deg,0.1,h⁻¹,TNF degradation,t½ ~ 7 h,Unverified source classification: Literature-derived,k_TNF_deg,0.10,h⁻¹,M6,Literature-derived
+k_IL1b_rel,0.15,h⁻¹,IL-1β release rate,[72],Unverified source classification: Literature-derived,k_IL1b_rel,0.15,h⁻¹,M6,Literature-derived
+k_IL1b_deg,0.1,h⁻¹,IL-1β degradation,t½ ~ 7 h,Unverified source classification: Literature-derived,k_IL1b_deg,0.10,h⁻¹,M6,Literature-derived
+K_motor,0.75,—,DA neuron threshold for motor deficit,[2],Unverified source classification: Literature-derived,K_motor,0.75,—,M7,Literature-derived
+n_motor,4.0,—,Motor Hill cooperativity,Threshold behaviour,Unverified source classification: Assumed,n_motor,4,—,M7,Assumed
+k_inflam,0.3,—,Inflammation contribution to motor,Calibration,Unverified source classification: Estimated,k_inflam,0.30,—,M7,Estimated
+k_motor_rate,0.05,h⁻¹,Motor score approach rate,Timescale matching,Unverified source classification: Assumed,k_motor_rate,0.05,h⁻¹,M7,Assumed
