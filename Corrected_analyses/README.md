@@ -5,31 +5,27 @@ Nothing outside this folder was modified.
 
 ## Provenance
 
-`code/model.py`, `code/fast_kernel.py`, `code/test_model.py` and `data/parameters.csv` are unmodified copies
+`code/model.py`, `code/fast_kernel.py` and `data/parameters.csv` are unmodified copies
 from `G:\My Drive\Bevemipretide QSP\Revisions_2026-09-18`:
 
 | File | SHA-256 |
 |---|---|
 | code/model.py | a3e6f288659ae38fee9edab6d25aac36c74412d7c187c5875d6a43459dc992a2 |
 | code/fast_kernel.py | 98649944acec7be224c1550e248b02325811634f1dcdb22a64ab3150a16125fe |
-| code/test_model.py | 6100a1187ce56f42eb8ce65ae51522772c1cd11fc6f5ae05b1b2c22871827fc7 |
 | data/parameters.csv | aadbd18dbf7b68ebd45f11caad461d47e334ba8eed50611c71736bf8e555cb1b |
 
 The rebuild's equations match manuscript Table ST5 term by term, and its parameters match Table ST1.
-On this machine it reproduces its own saved outputs to about 1e-10 and passes its 11 tests.
-New code: `code/bjp_corrected.py` (analyses), `code/make_bjp_figures.py` (figures), `code/test_bjp_corrected.py` (4 tests).
+Analysis code: `code/bjp_corrected.py` (all analyses), `code/make_bjp_figures.py` (figures).
 
 ## Run
 
 ```
 cd code
-python -X utf8 -m pytest test_model.py test_bjp_corrected.py -q --junitxml=../results/verification.xml
 python -X utf8 bjp_corrected.py --workers 22 --patients 250 --candidates 1200 --boots 10000 --sobol-base 256
 python -X utf8 make_bjp_figures.py
 ```
 
 Tested with Python 3.9.13, NumPy 1.26.4, SciPy 1.11.4 and numba 0.60.0. The full run took 7.3 minutes on 22 processes.
-Run the tests before and after the analysis: the correction tests read the saved results.
 
 ## What was corrected
 
@@ -185,36 +181,9 @@ Compared with BJP:
 - **Table 2:** healthy DA 0.989, and restate the criterion. Report CI activity relative to healthy (0.484). Note that the TLR2 result is below the literature range.
 - **Model_info risk assessment:** lower "model influence" to trial-planning scenarios. The corrected sample size (about 850–1,150 per arm at 30 mg) is itself a planning finding worth stating.
 
-## Corrected submission documents
+## Output
 
-`documents/` holds copies of the BJP files with the corrections as Word tracked changes (author "Claude (corrected analyses)"). The originals in the project folder are untouched.
-
-| File | Content |
-|---|---|
-| Manuscript_bjp_tracked.docx | 576 tracked revisions: abstract, Methods 2.1/2.3–2.9, Results 3.1–3.9, Discussion, Limitations, Conclusion, legends of Figs 4–7, Tables 2–5, plus four new table notes and two new Table 4 rows |
-| Supplementary_Tables_tracked.docx | 206 tracked revisions in ST1 (C_ref, k_drug, K_CL, six unit labels), ST2 enrolment note, ST3A/B, ST4B/C, and the ST4/ST5 notes |
-| *_clean.docx | The same files with all changes accepted (manuscript 40 pages, supplement 12 pages) |
-| ../qa/*.pdf | Word renderings of the tracked (with markup) and clean versions |
-
-Checks run:
-- Both files pass the OOXML schema validator.
-- The redlining validator confirms every change against the original is wrapped in a tracked change.
-- Every revised paragraph's visible text was asserted equal to the intended text.
-
-To regenerate: `python -X utf8 code/apply_bjp_edits.py`. It reads the original .docx files and ../results and writes documents/.
-
-Rendering note: Word COM automation worked when the commands ran inline. Running `code/render_documents.ps1` directly from the Google Drive volume hung before Word started, so copy the script to a local folder first.
-If a hidden Word instance is killed, its entries under `HKCU:\Software\Microsoft\Office\16.0\Word\Resiliency\DocumentRecovery` must be cleared. Otherwise the next hidden instance waits on an invisible recovery prompt.
-
-Corrected figures under BJP file names are in `figures_bjp/`, with legends in `figures_bjp/LEGENDS.md`.
-
-Not edited:
-- `Model_info_bjp.docx`: the risk assessment still describes Medium–High influence on dose, sample size and go/no-go.
-- `Bullet_Point_Summary_bjp.docx`: still claims benefit on the other pathways; this now holds, but the size needs stating.
-- The Figure 4 image: its "attractor" labels are in the picture.
-- `Supplementary_Figures.pdf`.
-
-The GitHub repository cited in Section 2.9 should also receive this Python code, because the manuscript now says the corrected analyses used it.
+Running `bjp_corrected.py` writes results to `../results/` (JSON, CSV). Running `make_bjp_figures.py` writes corrected figures to `../figures/` (PNG, SVG).
 
 ## Limits of this regeneration
 

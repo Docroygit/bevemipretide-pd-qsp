@@ -16,7 +16,7 @@ M0 (PK) → M1 (Cardiolipin) → M3 (ETC Bioenergetics) → M4 (Oxidative Stress
 
 | Module | States | ODEs | Key Outputs |
 |--------|--------|------|-------------|
-| M0 Pharmacokinetics | Depot, C_plasma, C_periph, C_brain, C_mito | 5 | C_mito → M1 |
+| M0 Pharmacokinetics | Depot, A_plasma, A_periph, A_brain, A_mito | 5 | Drug exposure → M1 |
 | M1 Cardiolipin | CL_n, CL_ox, CL_ext, ALCAT1, TAZ | 5 | CL_ratio → M3 |
 | M2 α-Synuclein | aSyn_mono, aSyn_olig, aSyn_ext | 3 | aSyn_olig → M1, M3 |
 | M3 ETC Bioenergetics | CI_activity, SC_integrity, Δψ_m, ATP, mPTP_open | 5 | CI, SC → M4 |
@@ -27,121 +27,59 @@ M0 (PK) → M1 (Cardiolipin) → M3 (ETC Bioenergetics) → M4 (Oxidative Stress
 
 ## Requirements
 
-- **R** >= 4.3.0
-- R packages: `deSolve`, `ggplot2`, `tidyr`, `dplyr`, `gridExtra`, `grid`, `parallel`
-
-Install required packages:
-```r
-install.packages(c("deSolve", "ggplot2", "tidyr", "dplyr", "gridExtra"))
-```
-
-Optional (for regenerating `ST1_classification.json`):
 - Python 3.9+
+- Packages: `numpy`, `scipy`, `numba`, `matplotlib`, `pandas`
+
+```bash
+pip install numpy scipy numba matplotlib pandas
+```
 
 ## Repository Structure
 
 ```
-Bevemipretide QSP/                    # Model source code
-├── Integrated Model.R                # Full 28-ODE coupled system + calibration + validation
-│                                      # (the single source of truth: every analysis script below
-│                                      #  sources ONLY this file)
-├── Module 0 PK.R                     # Standalone module-level verification (not part of the
-├── Module 1 pass.R                   # analysis pipeline — each file re-implements and
-├── Module 2 aSyn.R                   # independently tests one module's ODEs in isolation,
-├── Module 3 ETC.R                    # with its own V1-V6 checks, as a development-time
-├── Module 4 ROS.R                    # cross-check against the integrated model's behaviour)
-├── Module 5 Mitophagy.R
-├── Module 6 Neuroinflammation.R
-├── Module 7 Motor.R
-├── Sensitivity Analysis.R            # OAT + Morris + Sobol (34 parameters) -> Table 3, Fig S1
-├── Human Translation.R               # Allometric mouse-to-human scaling -> Table 4, Fig 5
-├── run_arm.R                         # Per-arm virtual-population simulation (run 4x, one per dose)
-├── Robustness Analysis.R             # Assembles run_arm.R output -> Table 5, Fig 6
-├── Uncertainty Analysis.R            # Bootstrap CIs + parameter envelope -> Table S3, Fig 7
-├── Phased Simulation.R               # Prodromal -> diagnosis -> treatment -> Table S4
-├── Identifiability Analysis.R        # Structural identifiability + collinearity -> Fig S4, S6
-├── profile_likelihood_fast.R         # Practical identifiability (profile likelihood) -> Fig S5
-├── Generate_New_Plots.R              # Main figure generation (Fig 1, 2, 4, 5, 6, S1-S3, plus
-│                                      # first-pass Fig 3 and Fig 7)
-├── Fix_Fig3_Fig7.R                   # Corrects Fig 3 and Fig 7 — must be run AFTER
-│                                      # Generate_New_Plots.R to produce the final versions
-├── export_st1_classification.py      # Exports the parameter classification table to JSON
-│                                      # (consumed by Identifiability Analysis.R)
-├── ST1_classification.json           # Parameter classification data (output of the script above)
-└── Bevemipretide QSP.Rproj           # RStudio project file
-
-New publication plots/                # Generated publication figures and tables
-├── Fig1-Fig7 (main figures)
-├── FigS1-FigS6 (supplementary figures)
-├── Main_Tables.docx
-├── Supplementary_Tables.docx
-└── Supplementary_Figures_Identifiability.docx  # FigS4-S6 with extended captions
+Corrected_analyses/
+├── code/
+│   ├── model.py              # 28-ODE model: PK (analytical) + 23 PD states (numerical)
+│   ├── fast_kernel.py         # Numba-compiled ODE kernel (algebraically identical to model.py)
+│   ├── bjp_corrected.py       # All analyses: mouse validation, PK, human translation,
+│   │                          # virtual clinical trial, parameter envelope, Sobol SA
+│   └── make_bjp_figures.py    # Publication figures (Figs 5-7, S1-S3) from saved results
+├── data/
+│   └── parameters.csv         # All model parameters (matches manuscript Table ST1)
+└── README.md                  # Corrections applied, corrected results, and run instructions
 ```
 
 ## Running the Code
 
-All commands should be run from the `Bevemipretide QSP/` directory. Use `--vanilla` to ensure clean R sessions. Run order matters where noted.
-
-### 1. Integrated Model + Validation
-
 ```bash
-cd "Bevemipretide QSP"
-Rscript --vanilla "Integrated Model.R"
+cd Corrected_analyses/code
+
+# Run all analyses (~7 min on 22 cores)
+python -X utf8 bjp_corrected.py --workers 22 --patients 250 --candidates 1200 --boots 10000 --sobol-base 256
+
+# Generate publication figures
+python -X utf8 make_bjp_figures.py
 ```
 
-Runs the full 28-ODE system with 4-stage calibration and 18 independent validation checks against literature targets (Gao 2017, Choi 2022, Ivanova 2024, Bernheimer 1973). This is the only file every other script depends on.
+Results are written to `Corrected_analyses/results/` and figures to `Corrected_analyses/figures/`.
 
-### 2. (Optional) Standalone Module Verification
+### What the analysis produces
 
-```bash
-Rscript --vanilla "Module 0 PK.R"
-Rscript --vanilla "Module 1 pass.R"
-Rscript --vanilla "Module 2 aSyn.R"
-Rscript --vanilla "Module 3 ETC.R"
-Rscript --vanilla "Module 4 ROS.R"
-Rscript --vanilla "Module 5 Mitophagy.R"
-Rscript --vanilla "Module 6 Neuroinflammation.R"
-Rscript --vanilla "Module 7 Motor.R"
-```
-
-Each module independently re-implements and tests its own ODEs in isolation (V1-V6 checks, 48 tests total). These are development-time cross-checks, not inputs to any downstream analysis — safe to skip if you only want to reproduce the manuscript's reported figures and tables.
-
-### 3. Analyses
-
-```bash
-Rscript --vanilla "Sensitivity Analysis.R"       # ~20 min (OAT + Morris + Sobol) -> Table 3, Fig S1
-Rscript --vanilla "Human Translation.R"          # ~5 min -> Table 4, Fig 5
-Rscript --vanilla run_arm.R 1                    # ~15 min each, run once per arm (1-4)
-Rscript --vanilla run_arm.R 2
-Rscript --vanilla run_arm.R 3
-Rscript --vanilla run_arm.R 4
-Rscript --vanilla "Robustness Analysis.R"        # assembles the 4 arms above -> Table 5, Fig 6
-Rscript --vanilla "Uncertainty Analysis.R"       # ~15 min -> Table S3, Fig 7
-Rscript --vanilla "Phased Simulation.R"          # ~10 min -> Table S4
-Rscript --vanilla "Identifiability Analysis.R"   # ~10 min -> Fig S4, S6 (reads ST1_classification.json)
-Rscript --vanilla "profile_likelihood_fast.R"    # ~35 min -> Fig S5
-```
-
-### 4. Generate Publication Figures
-
-```bash
-Rscript --vanilla "Generate_New_Plots.R"         # Fig 1, 2, 4, 5, 6, S1-S3, plus first-pass Fig 3, 7
-Rscript --vanilla "Fix_Fig3_Fig7.R"              # corrects Fig 3 and Fig 7 — run this AFTER the line above
-```
-
-Output appears in `../New publication plots/`.
-
-### 5. (If parameter classifications change) Regenerate ST1_classification.json
-
-```bash
-python export_st1_classification.py
-```
-
-Only needed if Table ST1's parameter classifications are edited; `ST1_classification.json` is already committed with its current output.
+| Analysis | Output files | Manuscript tables/figures |
+|----------|-------------|--------------------------|
+| Mouse calibration and validation | `mouse.json`, `mouse_timeseries.csv` | Table 2 |
+| PK characterisation | `pk.json`, `pk_accumulation.csv` | Table 4 |
+| Human 20-year trajectories | `human_nominal.json`, `human_20y_trajectories.csv` | Fig 5, Table S4 |
+| Phased simulation (prodromal → treatment) | `ST4_phased.csv` | Table S4 |
+| Virtual clinical trial (N=250/arm) | `vct_summary.json`, `vct_endpoints.csv` | Table 5, Fig 6 |
+| Parameter uncertainty envelope | `envelope.json`, `envelope.csv` | Table S3, Fig 7 |
+| Sobol sensitivity analysis (±50%) | `sobol_pm50.json` | Table 3, Fig S1 |
+| Mouse dose-response | `mouse_dose_response_day50.csv` | Fig S3 |
+| Figures 5, 6, 7, S1, S2, S3 | `figures/*.png`, `figures/*.svg` | Figs 5-7, S1-S3 |
 
 ## Key Parameters
 
-### Calibrated (6 parameters, fitted to experimental data)
+### Calibrated (mouse)
 
 | Parameter | Value | Biological Meaning |
 |-----------|-------|--------------------|
@@ -162,14 +100,17 @@ Only needed if Table ST1's parameter classifications are edited; `ST1_classifica
 | k_e,plasma | 0.231 h⁻¹ | 0.032 h⁻¹ |
 | Reference dose | 5 mg/kg IP | 30 mg SC daily |
 
-## Parameter Classification (90 total)
+## Corrections Applied
 
-| Category | Count | Description |
-|----------|-------|-------------|
-| Literature-derived | 32 (35.6%) | From published experimental data with DOI/PMID |
-| Calibrated | 6 (6.7%) | Fitted to quantitative experimental targets |
-| Estimated | 33 (36.7%) | Fitted to qualitative behaviour or steady-state constraints |
-| Assumed | 19 (21.1%) | Mechanistically justified with literature support |
+This code applies 7 corrections to the original R-based analyses (detailed in `Corrected_analyses/README.md`):
+
+1. Drug exposure normalised by exact steady-state mean (not day-120 trough C_ref)
+2. k_drug re-anchored to preserve published mouse results (scenario A) with sensitivity check (scenario B)
+3. Phased simulation: DA monotonicity enforced (dDA/dt ≤ 0)
+4. Virtual trial: symptomatic enrolment (DA < 0.70 screening threshold)
+5. Death attribution: cumulative pathway loss (sums to total loss exactly)
+6. Response thresholds relabelled (simulation thresholds, not validated MCIDs)
+7. Sobol re-run at stated ±50% range with bootstrap intervals
 
 ## Validation Summary
 
