@@ -34,10 +34,10 @@ Bevemipretide QSP model analyses/
 │   ├── fast_kernel.py         # Numba-compiled ODE kernel (algebraically identical to model.py)
 │   ├── bjp_corrected.py       # All analyses: mouse validation, PK, human translation,
 │   │                          # virtual clinical trial, parameter envelope, Sobol SA
-│   ├── make_bjp_figures.py    # Publication figures from saved results (Figs 5-7, S1-S3)
+│   ├── make_bjp_figures.py    # Publication figures 4-7, S1-S3 from saved results
 │   ├── Integrated Model.R    # Full 28-ODE coupled system (R implementation)
-│   └── Generate_New_Plots.R   # Publication figures 1-4 (model architecture, dynamics,
-│                              # calibration, phase portrait)
+│   └── Generate_New_Plots.R   # Publication figures 1-3 (model architecture, integrated
+│                              # dynamics, calibration/validation)
 ├── data/
 │   └── parameters.csv         # All model parameters (matches manuscript Table ST1)
 └── README.md
@@ -45,12 +45,12 @@ Bevemipretide QSP model analyses/
 
 ## Requirements
 
-**Python** (for analyses and Figs 5-7, S1-S3):
+**Python** (for analyses and Figs 4-7, S1-S3):
 ```bash
 pip install numpy scipy numba matplotlib pandas
 ```
 
-**R** (for Figs 1-4):
+**R** (for Figs 1-3):
 - Packages: `deSolve`, `ggplot2`, `tidyr`, `dplyr`, `gridExtra`
 
 ## Running the Code
@@ -61,10 +61,10 @@ cd "Bevemipretide QSP model analyses/code"
 # Python: run all analyses (~7 min on 22 cores)
 python -X utf8 bjp_corrected.py --workers 22 --patients 250 --candidates 1200 --boots 10000 --sobol-base 256
 
-# Python: generate publication figures 5-7, S1-S3
+# Python: generate publication figures 4-7, S1-S3
 python -X utf8 make_bjp_figures.py
 
-# R: generate publication figures 1-4
+# R: generate publication figures 1-3
 Rscript --vanilla Generate_New_Plots.R
 ```
 

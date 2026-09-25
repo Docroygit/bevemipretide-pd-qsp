@@ -9,14 +9,14 @@ Independent Python rebuild of the 28-ODE QSP model and R code for publication fi
 | `code/model.py` | Python | 28-ODE model: 5 PK states (analytical) + 23 PD states (numerical) |
 | `code/fast_kernel.py` | Python | Numba-compiled ODE kernel (algebraically identical to model.py) |
 | `code/bjp_corrected.py` | Python | All analyses: mouse validation, PK, human translation, virtual clinical trial, parameter envelope, Sobol SA |
-| `code/make_bjp_figures.py` | Python | Publication figures from saved results (Figs 5-7, S1-S3) |
+| `code/make_bjp_figures.py` | Python | Publication figures 4-7 and S1-S3 from saved results |
 | `code/Integrated Model.R` | R | Full 28-ODE coupled system with calibration, validation, and `run_integrated()` function |
-| `code/Generate_New_Plots.R` | R | Publication figures 1-4 (model architecture, integrated dynamics, calibration, phase portrait) |
+| `code/Generate_New_Plots.R` | R | Publication figures 1-3 (model architecture, integrated dynamics, calibration/validation) |
 | `data/parameters.csv` | Data | All model parameters (matches manuscript Table ST1) |
 
 ## Running
 
-### Python analyses
+### Python analyses and figures 4-7, S1-S3
 
 ```bash
 cd code
@@ -28,7 +28,7 @@ Requires: Python 3.9+, numpy, scipy, numba, matplotlib, pandas.
 
 Results are written to `results/` (JSON, CSV) and figures to `figures/` (PNG, SVG).
 
-### R figures
+### R figures 1-3
 
 ```bash
 cd code
@@ -52,4 +52,4 @@ Figures are written to `../New publication plots/`.
 
 | R script | Figures |
 |---|---|
-| `Generate_New_Plots.R` | Fig 1 (model architecture), Fig 2 (integrated dynamics), Fig 3 (calibration/validation), Fig 4 (phase portrait) |
+| `Generate_New_Plots.R` | Fig 1 (model architecture), Fig 2 (integrated dynamics), Fig 3 (calibration/validation) |
